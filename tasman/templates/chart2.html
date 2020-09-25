@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block chart_active %}active{% endblock %}
+{% block body %}
+<div class="container">
+<canvas id="chart" width="10" height="4"></canvas>                      
+
+<script type="text/javascript">  
+     var a = document.getElementById('chart').getContext('2d');
+     var myLineChart = new Chart(a, {
+               type: 'line',
+               data: {
+                   labels:[{% for i in data %}{{ i.salinity }},{% endfor %}],
+                   datasets: [
+                   {
+                        label:'Height (m) X Salinity (psu)',
+                        fill: false,
+                  backgroundColor: 'rgb(0, 128, 0)',
+                  borderColor: 'rgb(0, 128, 0)',
+                        data: [{% for i in data %}{{ i.depth }},{% endfor %}]
+                    },
+                             ]
+                      },
+               options:{
+                   scales: {
+                       xAxes: [{
+                        scaleLabel: {
+                          display: true,
+                          labelString: 'Salinity (psu)'
+                        }
+                              }],
+                       yAxes: [{
+                          display:true,
+                           ticks: {
+                               beginAtZero:true
+                                   },
+                                       scaleLabel: {
+                                              display: true,
+                                              labelString: 'Height (m)'
+                                            }  
+                               }]
+                            }
+                        }
+                      });
+</script>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

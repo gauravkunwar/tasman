@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tasman Salinity & Temperature Applet</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-light navbar-light text-dark">
+  <!-- <a class="navbar-brand" href="{% url 'index' %}">DitchTech</a> -->
+      <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{%  static 'logo.png' %}" alt="DitchTech">
+        </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+
+    	<li class="nav-item dropdown {% block chart_active %}{% endblock %}">
+    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Tasman Sea</a>
+    	<div class="dropdown-menu">
+    		<a class="dropdown-item" href="{% url 'chart1' %}">Temperature Chart</a>
+      		<a class="dropdown-item" href="{% url 'chart2' %}">Salinity Chart</a>
+      		<a class="dropdown-item" href="{% url 'chart3' %}">Conductivity Chart</a>
+      		<a class="dropdown-item" href="{% url 'chart' %}">Full Chart</a>
+    	</div>
+  		</li>
+
+      <li class="nav-item dropdown {% block frequency_active %}{% endblock %}">
+    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Frequency</a>
+    	<div class="dropdown-menu">
+    		<a class="dropdown-item" href="{% url 'tech_2g' %}">2G</a>
+      		<a class="dropdown-item" href="{% url 'tech_3g' %}">3G</a>
+      		<a class="dropdown-item" href="{% url 'tech_4g' %}">4G</a>
+          <a class="dropdown-item" href="{% url 'tech_NFC' %}">NFC</a>
+          <a class="dropdown-item" href="{% url 'tech_ZigBee' %}">ZigBee</a>
+          <a class="dropdown-item" href="{% url 'tech_WiFi' %}">WiFi</a>
+          <a class="dropdown-item" href="{% url 'tech_WiMax' %}">WiMax</a>
+    	</div>
+  		</li>
+      <li class="nav-item dropdown {% block temporary_active %}{% endblock %}">
+    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Temporary links</a>
+    	<div class="dropdown-menu">
+    		<a class="dropdown-item" href="{% url 'json' %}">Json View</a>
+      		<a class="dropdown-item" href="{% url 'table' %}">Table View</a>
+    	</div>
+  		</li>
+      <li class="nav-item {% block about_active %}{% endblock %}">
+        <a class="nav-link" href="{% url 'about' %}">About</a>
+      </li>    
+    </ul>
+  <!-- </div> -->
+  <!-- <div class="navbar-collapse"> -->
+  {% if user.is_authenticated %}
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item {% block upload_active %}{% endblock %}">
+        <a class="nav-link" href="{% url 'data_upload' %}">Upload new Data</a>
+      </li>
+    </ul>
+  {% endif %}
+  </div>  
+</nav>
+<br>
+
+	{% block body %}
+	{% endblock %}
+
+</body>
+</html>

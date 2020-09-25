@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block frequency_active %}active{% endblock %}
+{% block body %}
+<div class="container">
+<canvas id="chart" width="10" height="4"></canvas>                      
+
+<script type="text/javascript">  
+     var a = document.getElementById('chart').getContext('2d');
+     var myLineChart = new Chart(a, {
+               type: 'line',
+               data: {
+                   labels:[{% for i in data %}{{ i.frequency }},{% endfor %}],
+                   datasets: [
+                   {
+                        label:'Attenuation (dB/m) X Frequency (MHz)',
+                        fill: false,
+                  backgroundColor: 'rgb(155, 195, 232)',
+                  borderColor: 'rgb(155, 195, 232)',
+                        data: [{% for i in data %}{{ i.attenuation }},{% endfor %}]
+                    },
+                             ]
+                      },
+               options:{
+                   scales: {
+                       xAxes: [{
+                        scaleLabel: {
+                          display: true,
+                          labelString: 'Frequency (MHz)'
+                        }
+                              }],
+                       yAxes: [{
+                          display:true,
+                           ticks: {
+                               beginAtZero:true
+                                   },
+                                       scaleLabel: {
+                                              display: true,
+                                              labelString: 'Attenuation (dB/m)'
+                                            }  
+                               }]
+                            }
+                        }
+                      });
+</script>
+</div>
+{% include 'footer2.html' %}
+{% endblock %}

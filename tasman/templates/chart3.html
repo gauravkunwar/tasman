@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block chart_active %}active{% endblock %}
+{% block body %}
+<div class="container">
+<canvas id="chart" width="10" height="4"></canvas>                      
+
+<script type="text/javascript">  
+     var a = document.getElementById('chart').getContext('2d');
+     var myLineChart = new Chart(a, {
+               type: 'line',
+               data: {
+                   labels:[{% for i in data %}{{ i.depth }},{% endfor %}],
+                   datasets: [
+                   {
+                        label:'Conductivity (siemens/m) X Height (m)',
+                        fill: false,
+                  backgroundColor: 'rgb(0, 0, 255)',
+                  borderColor: 'rgb(0, 0, 255)',
+                        data: [{% for i in data %}{{ i.conductivity }},{% endfor %}]
+                    },
+                             ]
+                      },
+               options:{
+                   scales: {
+                       xAxes: [{
+                        scaleLabel: {
+                          display: true,
+                          labelString: 'Height (m)'
+                        }
+                              }],
+                       yAxes: [{
+                          display:true,
+                           ticks: {
+                               beginAtZero:true
+                                   },
+                                       scaleLabel: {
+                                              display: true,
+                                              labelString: 'Conductivity (siemens/m)'
+                                            }  
+                               }]
+                            }
+                        }
+                      });
+</script>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

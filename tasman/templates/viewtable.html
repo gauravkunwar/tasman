@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block temporary_active %}active{% endblock %}
+{% block body %}
+<div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Salinity (psu)</th>
+      <th>Conductivity (siemens/m)</th>
+      <th>Temperature (°C)</th>
+      <th>Depth (m)</th>
+    </tr>
+  </thead>
+  {% for p in data%}
+  <tbody>
+    <tr>
+      <td>{{p.salinity}}</td>
+      <td>{{p.conductivity}}</td>
+      <td>{{p.temperature}}</td>
+      <td>{{p.depth}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
