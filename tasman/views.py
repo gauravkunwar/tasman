@@ -3,8 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from rest_framework import serializers
+from django.http import JsonResponse
 
 from tasman.models import Data, Freq
 

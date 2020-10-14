@@ -3,9 +3,9 @@
 {% block body %}
 
 <div class="container">
-<canvas id="chart" width="10" height="4"></canvas>                      
+<canvas id="chart" width="10" height="4"></canvas>
 
-<script type="text/javascript">  
+<script type="text/javascript">
      var a = document.getElementById('chart').getContext('2d');
      var myLineChart = new Chart(a, {
                type: 'line',
@@ -40,7 +40,7 @@
                        xAxes: [{
                         scaleLabel: {
                           display: true,
-                          labelString: 'Height (m)'
+                          labelString: 'Depth (m)'
                         }
                               }],
                        yAxes: [{
