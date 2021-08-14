@@ -9,6 +9,9 @@ Whole database can be updated using a single csv file.
 Uses:
 
 Python3
+
 Django
+
 ChartJS
+
 Bootstraps
