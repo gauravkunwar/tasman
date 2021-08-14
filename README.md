@@ -1,15 +1,14 @@
 # tasman-salinity
 
-College project. 
+This is a college project developed for a client. 
 
-Displays variation in conductivity, depth and temperature across Tasman Sea.
+It exhibits the variation in conductivity, depth and temperature across the Tasman Sea using interactive graphs.
 
-Has interactive graphs.
+Whole database can be updated using a single csv file.
 
 Uses:
 
 Python3
-
 Django
-
 ChartJS
+Bootstraps
